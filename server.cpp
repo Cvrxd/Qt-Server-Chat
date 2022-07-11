@@ -1,9 +1,9 @@
 #include "server.h"
 
-Server::Server()
-    : _blockSize(0)
+Server::Server(const int& server_port)
+    : _port(server_port), _blockSize(0)
 {
-    if(this->listen(QHostAddress::Any, 2323)) //Listen to any signals, port 2323
+    if(this->listen(QHostAddress::Any, server_port))
     {
         qDebug() << "SERVER::start \n";
     }
@@ -11,6 +11,21 @@ Server::Server()
     {
         qDebug() << "SERVER::start error \n";
     }
+}
+
+Server::~Server()
+{
+    for(auto& el : this->_sockets)
+    {
+        el->disconnect();
+        delete el;
+        el = nullptr;
+    }
+}
+
+const int &Server::getPort() const
+{
+    return this->_port;
 }
 
 //Slot for incoming connections
@@ -110,9 +125,6 @@ void Server::sendToClient(QString message)
          socket->write(this->_data);
      }
 }
-
-
-
 
 
 

@@ -189,6 +189,7 @@ Makefile: Server.pro ../../../../Qt/6.3.1/mingw_64/mkspecs/win32-g++/qmake.conf 
 		../../../../Qt/6.3.1/mingw_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/6.3.1/mingw_64/mkspecs/win32-g++/qmake.conf \
 		../../../../Qt/6.3.1/mingw_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../../Qt/6.3.1/mingw_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/6.3.1/mingw_64/mkspecs/features/toolchain.prf \
 		../../../../Qt/6.3.1/mingw_64/mkspecs/features/default_pre.prf \
@@ -214,7 +215,6 @@ Makefile: Server.pro ../../../../Qt/6.3.1/mingw_64/mkspecs/win32-g++/qmake.conf 
 		Server.pro \
 		../../../../Qt/6.3.1/mingw_64/lib/Qt6Network.prl \
 		../../../../Qt/6.3.1/mingw_64/lib/Qt6Core.prl \
-		.qmake.stash \
 		../../../../Qt/6.3.1/mingw_64/mkspecs/features/build_pass.prf
 	$(QMAKE) -o Makefile Server.pro -spec win32-g++ "CONFIG+=qtquickcompiler"
 ../../../../Qt/6.3.1/mingw_64/mkspecs/features/spec_pre.prf:
@@ -336,6 +336,7 @@ Makefile: Server.pro ../../../../Qt/6.3.1/mingw_64/mkspecs/win32-g++/qmake.conf 
 ../../../../Qt/6.3.1/mingw_64/mkspecs/features/qt_config.prf:
 ../../../../Qt/6.3.1/mingw_64/mkspecs/win32-g++/qmake.conf:
 ../../../../Qt/6.3.1/mingw_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../../Qt/6.3.1/mingw_64/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt/6.3.1/mingw_64/mkspecs/features/toolchain.prf:
 ../../../../Qt/6.3.1/mingw_64/mkspecs/features/default_pre.prf:
@@ -361,7 +362,6 @@ Makefile: Server.pro ../../../../Qt/6.3.1/mingw_64/mkspecs/win32-g++/qmake.conf 
 Server.pro:
 ../../../../Qt/6.3.1/mingw_64/lib/Qt6Network.prl:
 ../../../../Qt/6.3.1/mingw_64/lib/Qt6Core.prl:
-.qmake.stash:
 ../../../../Qt/6.3.1/mingw_64/mkspecs/features/build_pass.prf:
 qmake: FORCE
 	@$(QMAKE) -o Makefile Server.pro -spec win32-g++ "CONFIG+=qtquickcompiler"

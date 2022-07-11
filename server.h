@@ -11,10 +11,17 @@ class Server : public QTcpServer
     Q_OBJECT
 
 public:
-    Server();
+    Server(const int& sever_port);
+    ~Server();
+
     QTcpSocket* socket;
 
+    const int& getPort() const;
+
 private:
+    //Port info
+    const int _port;
+
     //Sockets
     QVector<QTcpSocket*> _sockets;
 
