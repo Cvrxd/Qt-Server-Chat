@@ -45,6 +45,7 @@ void Server::incomingConnection(qintptr socketDescriptor)
 
     //Successfully incoming connection
     qDebug() << "SRVER::Clinet connected " << socketDescriptor << '\n';
+
 }
 
 //Slot for reading messages
@@ -83,15 +84,16 @@ void Server::slotReadyRead()
                 break;
             }
 
+            QString user_name;
             QString message;
             QTime   time;
 
             //Read message from data stream
-            inDataStream >> time >> message;
+            inDataStream >> time >>user_name >> message;
 
             this->_blockSize = 0;
 
-            this->sendToClient(message);
+            this->sendToClient(message, user_name);
 
             //break;
         }
@@ -103,7 +105,7 @@ void Server::slotReadyRead()
 }
 
 //Sending message to client
-void Server::sendToClient(QString message)
+void Server::sendToClient(QString message,  QString user_name)
 {
     //Clearing data before sending new message
     this->_data.clear();
@@ -114,7 +116,7 @@ void Server::sendToClient(QString message)
      //QDataStream version
      outDataStream.setVersion(QDataStream::Version::Qt_6_3);
 
-     outDataStream << quint16(0) << QTime::currentTime() << message;
+     outDataStream << quint16(0) << QTime::currentTime() << user_name << message;
 
      outDataStream.device()->seek(0);
      outDataStream << quint16(this->_data.size() - sizeof(quint16));
